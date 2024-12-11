@@ -1,0 +1,172 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap'); */
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+* {
+    font-family: Outfit;
+}
+
+.active hr {
+    @apply block
+}
+
+::-webkit-scrollbar {
+    @apply hidden
+}
+
+@media (max-width: 740px) {
+    .active p {
+        @apply text-white bg-[#17a2b8]
+    }
+}
+
+/* Add this to your CSS or inline styles */
+.doctor-card img {
+  width: 100%;
+  height: auto;
+  object-fit: cover; /* Ensures the image maintains its aspect ratio */
+  border-radius: 8px; /* Optional: Add a border-radius for rounded corners */
+  display: block; /* Removes any inline spacing issues */
+}
+
+
+
+.content-five {
+    padding: 20px;
+  }
+  
+  .faqs-container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .faq-section .title {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  .faq-section .faqs-answer {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1rem;
+  }
+  
+  .faq {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 10px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+  
+  .faq.active {
+    background-color: #f9f9f9;
+  }
+  
+  .questions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    cursor: pointer;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .answer {
+    margin-top: 10px;
+    font-size: 0.9rem;
+  }
+  
+  .bottom-title {
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 10px;
+  }
+  
+  .faqs-contact-btn {
+    background-color: #17a2b8;
+    color: white;
+    border: none;
+    margin-top: 20px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .faqs-contact-btn:hover {
+    background-color: #0c606d;
+  }
+  
+  .faqs-questions {
+    margin-top: 5px;
+  }
+
+
+.questions h4 {
+  margin: 0;
+}
+
+.questions .fa-icon {
+  transition: transform 0.3s ease; /* Smooth icon rotation */
+}
+
+.questions .fa-icon.rotate {
+  transform: rotate(180deg); /* Rotate the minus icon */
+}
+
+.answer {
+  height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.3s ease; /* Smooth expand/collapse */
+}
+
+.faq.active .answer {
+  height: auto;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+.marquee-container {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center; /* Center content vertically */
+  background-color: #f9f9f9; /* Optional background color */
+}
+
+.marquee {
+  display: flex;
+  animation: scroll 20s linear infinite; /* Adjust time for speed */
+  white-space: nowrap;
+}
+
+.marquee-image {
+  width: 200px; /* Adjust size as needed */
+  margin: 0 15px; /* Adjust spacing between images */
+  border-radius: 10px; /* Optional rounded corners */
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0); /* Start from the beginning */
+  }
+  100% {
+    transform: translateX(-100%); /* Move entire length of the marquee */
+  }
+}

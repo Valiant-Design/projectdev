@@ -1,0 +1,91 @@
+
+const Doctors = () => {
+  const { speciality } = useParams();
+  const navigate = useNavigate();
+  const { doctors, isLoading } = useContext(AppContext);
+
+  const specialties = [
+    "General physician",
+    "Gynecologist",
+    "Dermatologist",
+    "Pediatricians",
+    "Neurologist",
+    "Gastroenterologist",
+  ];
+
+  const filteredDoctors = useMemo(() => {
+    if (speciality) {
+      return doctors.filter(
+        (doc) => doc.speciality.toLowerCase() === speciality.toLowerCase()
+      );
+    }
+    return doctors;
+  }, [doctors, speciality]);
+
+  if (isLoading) {
+    return <p>Loading doctors...</p>;
+  }
+
+  return (
+    <div>
+      <div className="container mx-auto px-4">
+        <p className="text-gray-600 mb-5">
+          Browse through the doctors' specialists.
+        </p>
+
+        {/* Parent container for left and right sections */}
+        <div className="grid grid-cols-1 md:grid-cols-[1fr_3fr] gap-6">
+          {/* Left Section: Specialties */}
+          <div className="flex flex-col gap-4 text-sm text-gray-600">
+            {specialties.map((spec) => (
+              <p
+                key={spec}
+                role="button"
+                tabIndex={0}
+                onClick={() =>
+                  speciality === spec
+                    ? navigate("/doctors")
+                    : navigate(`/doctors/${spec}`)
+                }
+                className={`w-full md:w-auto pl-3 py-1.5 pr-16 border border-gray-300 rounded transition-all cursor-pointer ${
+                  speciality === spec ? "bg-indigo-100 text-black" : ""
+                }`}
+              >
+                {spec}
+              </p>
+            ))}
+          </div>
+
+          {/* Right Section: Filtered Doctors */}
+          <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 gap-y-6">
+            {filteredDoctors.map((item) => (
+              <div
+                onClick={() => navigate(`/appointment/${item._id}`)}
+                className="border border-blue-200 rounded-xl overflow-hidden cursor-pointer hover:translate-y-[-10px] transition-all duration-500"
+                key={item._id}
+              >
+                <img
+                  className="bg-blue-50"
+                  src={item.image}
+                  alt={`${item.name}'s profile`}
+                />
+                <div className="p-4">
+                  <div className="flex items-center gap-2 text-sm text-center text-green-500">
+                    <p className="w-2 h-2 rounded-full bg-green-500"></p>
+                    <p>Available</p>
+                  </div>
+                  <p className="text-gray-900 text-lg font-medium">
+                    {item.name}
+                  </p>
+                  <p className="text-gray-600 text-sm">{item.speciality}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Doctors;
